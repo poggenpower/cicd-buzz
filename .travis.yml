@@ -1,9 +1,10 @@
-sudo: required
-
 services:
   - docker
 
 language: python
+os: 
+  - linux
+dist: xenial
 script:
   - python -m pytest -v
 
