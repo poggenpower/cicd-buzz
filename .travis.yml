@@ -20,7 +20,7 @@ before_install:
 script:
   - python -m pytest -v
   - ./trivy --exit-code 0 --severity HIGH --no-progress cicdbuzz:${COMMIT}
-  - ./trivy --exit-code 1 --severity CRITICAL --no-progress cicdbuzz:${COMMIT}
+  - ./trivy --exit-code 0 --severity CRITICAL --no-progress cicdbuzz:${COMMIT}
 
 cache:
   directories:

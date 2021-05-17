@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cicdbuzz
+spec:
+  selector:
+    app: cicdbuzz
+  ports:
+  - port: 5000
+    targetPort: 5000
+    name: pihole-admin
+    nodePort: 30500
+  type: NodePort

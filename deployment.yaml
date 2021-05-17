@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cicdbuzz
+  labels:
+    app: cicdbuzz
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cicdbuzz
+  template:
+    metadata:
+      labels:
+        app: cicdbuzz
+        name: cicdbuzz
+    spec:
+      containers:
+      - name: cicdbuzz
+        image: poggenpower/cicd-buzz:latest
+        imagePullPolicy: Always
