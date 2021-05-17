@@ -18,7 +18,8 @@ before_install:
   - echo "$KUBE_CONFIG" | base64 --decode > ${HOME}/.kube/config
   - kubectl config view
   - kubectl get pods --insecure-skip-tls-verify=true
-  - docker build -t cicdbuzz:${COMMIT} .
+  - docker build -t ${TRAVIS_REPO_SLUG}:${COMMIT} .
+  - docker images
   - export VERSION=$(curl --silent "https://api.github.com/repos/aquasecurity/trivy/releases/latest" | grep '"tag_name":' | sed -E 's/.*"v([^"]+)".*/\1/')
   - wget https://github.com/aquasecurity/trivy/releases/download/v${VERSION}/trivy_${VERSION}_Linux-64bit.tar.gz
   - tar zxvf trivy_${VERSION}_Linux-64bit.tar.gz
@@ -39,6 +40,6 @@ after_success:
 
 deploy:
   provider: script
-  script: kubectl apply -f deployment.yaml --insecure-skip-tls-verify=true
+  script: sh .travis/deploy_kubeernetes.sh
   on:
     all_branches: true
