@@ -39,6 +39,7 @@ after_success:
   - sh .travis/deploy_dockerhub.sh
 
 deploy:
+  skip_cleanup: true
   provider: script
   script: sh .travis/deploy_kubeernetes.sh
   on:
