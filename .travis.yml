@@ -21,7 +21,7 @@ before_install:
   - mkdir ${HOME}/.kube
   - echo "$KUBE_CONFIG" | base64 --decode > ${HOME}/.kube/config
 
-  script:
+script:
   - python -m pytest -v
   - ./trivy --exit-code 0 --severity HIGH --no-progress cicdbuzz:${COMMIT}
   - ./trivy --exit-code 0 --severity CRITICAL --no-progress cicdbuzz:${COMMIT}
