@@ -11,7 +11,7 @@ env:
     - COMMIT=${TRAVIS_COMMIT::8}
 
 before_install:
-  - echo /dev/null | openssl s_client -connect node1.dyn.schmu.net:6443
+  - echo /dev/null | openssl s_client -connect node1.dyn.schmu.net:6443 -6
   - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
   - chmod +x ./kubectl
   - sudo mv ./kubectl /usr/local/bin/kubectl
