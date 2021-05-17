@@ -27,8 +27,8 @@ before_install:
 script:
   - kubectl get pods --insecure-skip-tls-verify=true
   - python -m pytest -v
-  - ./trivy --exit-code 0 --severity HIGH --no-progress cicdbuzz:${COMMIT}
-  - ./trivy --exit-code 0 --severity CRITICAL --no-progress cicdbuzz:${COMMIT}
+  - ./trivy --exit-code 0 --severity HIGH --no-progress ${TRAVIS_REPO_SLUG}:${COMMIT}
+  - ./trivy --exit-code 0 --severity CRITICAL --no-progress ${TRAVIS_REPO_SLUG}:${COMMIT}
 
 cache:
   directories:
