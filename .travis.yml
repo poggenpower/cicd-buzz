@@ -34,4 +34,10 @@ cache:
 
 after_success:
   - sh .travis/deploy_dockerhub.sh
-  - kubectl apply -f deployment.yaml --insecure-skip-tls-verify=true
+
+deploy:
+  provider: script
+  script: kubectl apply -f deployment.yaml --insecure-skip-tls-verify=true
+  on:
+    tags: true
+    all_branches: true
