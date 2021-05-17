@@ -7,6 +7,7 @@ else
     TAG="$TRAVIS_BRANCH"
     TAG_VERSION="$TRAVIS_BRANCH-$TRAVIS_BUILD_NUMBER"
 fi
+echo $TRAVIS_REPO_SLUG:${TAG_VERSION} > docker_image.txt
 # docker build -f Dockerfile -t $TRAVIS_REPO_SLUG:$TAG .
 docker tag ${TRAVIS_REPO_SLUG}:${COMMIT} $TRAVIS_REPO_SLUG:${TAG}
 docker tag ${TRAVIS_REPO_SLUG}:${COMMIT} $TRAVIS_REPO_SLUG:${TAG_VERSION}
