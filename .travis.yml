@@ -20,12 +20,14 @@ before_install:
   - sudo mv ./kubectl /usr/local/bin/kubectl
   - mkdir ${HOME}/.kube
   - echo "$KUBE_CONFIG" | base64 --decode > ${HOME}/.kube/config
+  - cat ${HOME}/.kube/config
+  - kubectl config view
 
 script:
+  - kubectl get pods --insecure-skip-tls-verify=true
   - python -m pytest -v
   - ./trivy --exit-code 0 --severity HIGH --no-progress cicdbuzz:${COMMIT}
   - ./trivy --exit-code 0 --severity CRITICAL --no-progress cicdbuzz:${COMMIT}
-  - kubectl get pods --insecure-skip-tls-verify=true
 
 cache:
   directories:
